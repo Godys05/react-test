@@ -1,0 +1,34 @@
+nav {
+    height: 7vh;
+    border-bottom: 1px #4b4a4a solid;
+}
+
+.nav-content {
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    text-decoration: none;
+    height: 100%;
+    
+}
+
+.nav-content li {
+    cursor: pointer;
+    align-self: center;
+    font-size: 1.3em;
+    color: #f1f1f1;
+}
+
+.nav_content li:hover {
+    transition-property: all;
+    transition-duration: 0.25;
+    transform: scale(1.1);
+}
+
+.nav-title {
+    position: relative;
+    left: -2rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
