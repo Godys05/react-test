@@ -56,7 +56,6 @@ class AddPokemon extends React.Component {
                     image: this.state.pokemon.image,
                 })
                 .then(res => {
-                    console.log(res);
                     this.setState({success: true})
                 })
                 .catch(err => {

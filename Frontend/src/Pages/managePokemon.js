@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import POKEMON_API from '../utils/POKEMON_API';
+import './styles/managePokemon.css';
 
 import Pokemon from '../Components/Pokemon';
 
@@ -10,7 +11,6 @@ class managePokemon extends React.Component {
         success: false,
         fail: false,
     }
-
     componentDidMount() {
         this.getAllPokemon();
     }
@@ -18,14 +18,16 @@ class managePokemon extends React.Component {
     render() {
         const {pokemon} = this.state;
         return(
-            <div className="pokes">
+            <div>
                 <div className="success" hidden={!this.state.success}>Pokemon succesfully Deleted!</div>
                 <div className="fail" hidden={!this.state.fail}>ERROR</div>
-                {
-                    pokemon.length!==0 ? pokemon.map(poke => {
-                        return (<Pokemon id={poke.id} name={poke.name} image={poke.image} onDelete={this.deletePokemon.bind(this)}/>)
-                    }) : <div className="no-pokemon">There is no pokemon</div>
-                }
+                <div className="pokes">
+                    {
+                        pokemon.length!==0 ? pokemon.map(poke => {
+                            return (<Pokemon id={poke.id} name={poke.name} image={poke.image}/>)
+                        }) : <div className="no-pokemon">There is no pokemon</div>
+                    }
+                </div>
             </div>
         )
     }
@@ -36,20 +38,6 @@ class managePokemon extends React.Component {
             this.setState({pokemon: res.data.pokemon});
         }.bind(this))
         .catch(err => console.error(err));
-    }
-
-    deletePokemon(id) {
-        axios.delete(`${POKEMON_API.url}/${id}`)
-        .then(res => {
-            this.setState(
-                {
-                    pokemon: this.state.pokemon.filter((_,i) => i !== res.data.data),
-                    sucess: true
-                }
-            );
-            this.setState({success: true});
-        })
-        .catch(err => { this.setState({fail: true}); });
     }
     
 }

@@ -1,0 +1,5 @@
+.pokes {
+    display: flex;
+    justify-items: space-around;
+    margin-top: 2vh;
+}
